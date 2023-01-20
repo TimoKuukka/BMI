@@ -1,2 +1,2 @@
 # BMI
-Painoindeksilaskuri
+Painoindeksin ja kehon rasvaprosentin laskuri
