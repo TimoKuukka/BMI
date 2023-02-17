@@ -14,7 +14,7 @@ class Kuntoilija:
     """Luokka kuntoilijan tietoja varten"""
 
     # Olionmuodostin eli konstruktori, self -> tuleva olio
-    def __init__(self, nimi, pituus, paino, ika, sukupuoli, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys):
+    def __init__(self, nimi, pituus, paino, ika, sukupuoli):
         
         # Määritellään tulevan olion ominaisuudet (property), luokan kentät (field)
         self.nimi = nimi
@@ -23,9 +23,6 @@ class Kuntoilija:
         self.ika = ika
         self.sukupuoli = sukupuoli
         self.bmi = fitness.laske_bmi(self.pituus, self.paino)
-        self.vyotaron_ymparys = vyotaron_ymparys
-        self.kaulan_ymparys = kaulan_ymparys
-        self.lantion_ymparys = lantion_ymparys
 
     # Metodi rasvaprosentin laskemiseen (aikuinen)
     def rasvaprosentti(self):
@@ -34,7 +31,7 @@ class Kuntoilija:
         return self.rasvaprosentti
 
     # Metodi rasvaprosentin laskemiseen USA:n armeijan metodeilla
-    def usa_rasvaprosentti_mies(pituus, vyotaron_ymparys, kaulan_ymparys):
+    def usa_rasvaprosentti_mies(self, pituus, vyotaron_ymparys, kaulan_ymparys):
         """ summary
 
         Args:
@@ -45,10 +42,10 @@ class Kuntoilija:
         Returns:
             float: rasvaprosentti
         """
-        usa_rasvaprosentti = 0
+        usa_rasvaprosentti = fitness.usarasvaprosentti_mies(pituus, vyotaron_ymparys,kaulan_ymparys)
         return usa_rasvaprosentti
 
-    def usa_rasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys):
+    def usa_rasvaprosentti_nainen(self, pituus, vyotaron_ymparys, lantion_ymparys, kaulan_ymparys):
         """laskee kehon rasvaprosentin USA:n armeijan kaavalla
 
         Args:
@@ -60,7 +57,7 @@ class Kuntoilija:
         Returns:
             float: rasvaprosentti
         """
-        usa_rasvaprosentti = fitness.usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
+        usa_rasvaprosentti = fitness.usarasvaprosentti_nainen(pituus, vyotaron_ymparys, lantion_ymparys, kaulan_ymparys)
         return usa_rasvaprosentti
 
 #  JunioriKuntoilija-luokka Kuntoilija-luokan aliluokka (subclass) 

@@ -76,27 +76,26 @@ def usarasvaprosentti_mies(pituus, vyotaron_ymparys, kaulan_ymparys):
     usarprosentti = 86.010 * math.log10(tuuma_vyotaron_ymparys - tuuma_kaulan_ymparys) - 70.041 * math.log10(tuuma_pituus) + 36.76
     return usarprosentti
 
-def usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys):
+def usarasvaprosentti_nainen(pituus, vyotaron_ymparys, lantion_ymparys, kaulan_ymparys):
     """laskee naisen rasvaprosentin amerikkalaisella tavalla
 
     Args:
         pituus (float): pituus (cm)
         vyotaron_ymparys (float): vatsan ympärysmitta (cm)
-        kaulan_ymparys (float): kaulan ympärysmitta (cm)
         lantion_ymparys (float): lantion ymparysmitta (cm)
+        kaulan_ymparys (float): kaulan ympärysmitta (cm)
 
     Returns:
-        float: usa naisen kehon rasvaprosentti
+        float: rasvaprosentti
     """
     # Muutetaan mitat tuumiksi
     tuuma_pituus = pituus / 2.54
     tuuma_vyotaron_ymparys = vyotaron_ymparys / 2.54
-    tuuma_kaulan_ymparys =  kaulan_ymparys / 2.54
     tuuma_lantion_ymparys = lantion_ymparys / 2.54
+    tuuma_kaulan_ymparys =  kaulan_ymparys / 2.54
 
     usa_rasvaprosentti = 163.205 * math.log10(tuuma_vyotaron_ymparys + tuuma_lantion_ymparys - tuuma_kaulan_ymparys) - 97.684 * math.log10(tuuma_pituus) - 78.387
     return usa_rasvaprosentti
-
 
 
 # Suoritetaan seuraavat rivit vain, jos tämä tiedosto on pääohjelma
@@ -124,13 +123,11 @@ if __name__ == "__main__":
     ika = float(ika_teksti)
     sukupuoli = float(sukupuoli_teksti)
     vyotaron_ymparys = float(vyotaron_ymparys_teksti)
-    kaulan_ymparys = float(kaulan_ymparys_teksti)
     lantion_ymparys = float(lantion_ymparys_teksti)
-
-
+    kaulan_ymparys = float(kaulan_ymparys_teksti)
 
     # Lasketaan painoindeksi funktiolla laske_bmi
-    oma_bmi = laske_bmi(pituus, paino)
+    oma_bmi = laske_bmi(paino, pituus)
 
     # Yli 18 vuotiailla käytetään aikusten kaavaa
     if ika >= 18:
@@ -144,11 +141,8 @@ if __name__ == "__main__":
 
     if sukupuoli_teksti == "1":
         usa_rasvaprosentti = usarasvaprosentti_mies(pituus, vyotaron_ymparys, kaulan_ymparys)
+    
     else:
-        usa_rasvaprosentti = usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
+        usa_rasvaprosentti = usarasvaprosentti_nainen(pituus, vyotaron_ymparys, lantion_ymparys, kaulan_ymparys)
         
     print("USA:n armeijan laskukaavalla rasvaprosenttisi on", usa_rasvaprosentti)
-
-
-    # usar_rasvaprosentti = usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
-    # print("USA:n armeijan laskukaavalla rasvaprosenttisi on", usar_rasvaprosentti)
