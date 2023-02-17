@@ -68,9 +68,9 @@ def usarasvaprosentti_mies(pituus, vyotaron_ymparys, kaulan_ymparys):
     """
 
     # Muutetaan mitat tuumiksi
-    tuuma_pituus = pituus / 2.5
-    tuuma_vyotaron_ymparys = vyotaron_ymparys / 2.5
-    tuuma_kaulan_ymparys =  kaulan_ymparys / 2.5
+    tuuma_pituus = pituus / 2.54
+    tuuma_vyotaron_ymparys = vyotaron_ymparys / 2.54
+    tuuma_kaulan_ymparys =  kaulan_ymparys / 2.54
 
     # Lasketaan rasvaprosentti
     usarprosentti = 86.010 * math.log10(tuuma_vyotaron_ymparys - tuuma_kaulan_ymparys) - 70.041 * math.log10(tuuma_pituus) + 36.76
@@ -89,13 +89,13 @@ def usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_y
         float: usa naisen kehon rasvaprosentti
     """
     # Muutetaan mitat tuumiksi
-    tuuma_pituus = pituus / 2.5
-    tuuma_vyotaron_ymparys = vyotaron_ymparys / 2.5
-    tuuma_kaulan_ymparys =  kaulan_ymparys / 2.5
-    tuuma_lantion_ymparys = lantion_ymparys / 2.5
+    tuuma_pituus = pituus / 2.54
+    tuuma_vyotaron_ymparys = vyotaron_ymparys / 2.54
+    tuuma_kaulan_ymparys =  kaulan_ymparys / 2.54
+    tuuma_lantion_ymparys = lantion_ymparys / 2.54
 
-    usarprosentti = 163.205 * math.log10(tuuma_vyotaron_ymparys + tuuma_lantion_ymparys - tuuma_kaulan_ymparys) - 97.684 * math.log10(tuuma_pituus) - 78.387
-    return usarprosentti
+    usa_rasvaprosentti = 163.205 * math.log10(tuuma_vyotaron_ymparys + tuuma_lantion_ymparys - tuuma_kaulan_ymparys) - 97.684 * math.log10(tuuma_pituus) - 78.387
+    return usa_rasvaprosentti
 
 
 
@@ -112,8 +112,11 @@ if __name__ == "__main__":
     sukupuoli_teksti = input("Anna sukupuoli. Mies vastaa: 1, nainen vastaa 0: ")
     vyotaron_ymparys_teksti = input("Mikä on vyötärönympäryksesi (cm): ")
     kaulan_ymparys_teksti = input("Mikä on on kaulasi ympärysmitta (cm): ")
+
+    # Jos vastaus sukupuolikysymykseen on nainen, kysy lantion mitta
     if sukupuoli_teksti == "0":
-        lantion_ymparys_teksti = input("Mikä on lantiosi ymparysmitta (cm): ")
+        lantion_ymparys_teksti = input("Mikä on lantiosi ympärysmitta (cm): ")
+    
 
     # Muutetaan vastaukset liukuluvuiksi
     pituus = float(pituus_teksti)
@@ -139,12 +142,12 @@ if __name__ == "__main__":
         
     print("Painoindeksisi on", oma_bmi, "ja kehon rasvaprosentti on", oma_rasvaprosentti)
 
-    if sukupuoli == "1":
+    if sukupuoli_teksti == "1":
         usa_rasvaprosentti = usarasvaprosentti_mies(pituus, vyotaron_ymparys, kaulan_ymparys)
-        print("Olet siis mies ja USA:n armeijan laskukaavalla rasvaprosenttisi on", usa_rasvaprosentti)
     else:
-        usaw_rasvaprosentti = usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
-        print("Olet siis nainen ja USA:n armeijan laskukaavalla rasvaprosenttisi on", usaw_rasvaprosentti)
+        usa_rasvaprosentti = usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
+        
+    print("USA:n armeijan laskukaavalla rasvaprosenttisi on", usa_rasvaprosentti)
 
 
     # usar_rasvaprosentti = usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)

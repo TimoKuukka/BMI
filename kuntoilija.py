@@ -49,7 +49,7 @@ class Kuntoilija:
         return usa_rasvaprosentti
 
     def usa_rasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys):
-        """_summary_
+        """laskee kehon rasvaprosentin USA:n armeijan kaavalla
 
         Args:
             pituus(float): pituus (cm)
@@ -60,7 +60,7 @@ class Kuntoilija:
         Returns:
             float: rasvaprosentti
         """
-        usa_rasvaprosentti = 0
+        fitness.usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
         return usa_rasvaprosentti
 
 #  JunioriKuntoilija-luokka Kuntoilija-luokan aliluokka (subclass) 
