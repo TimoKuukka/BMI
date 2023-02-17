@@ -14,7 +14,7 @@ class Kuntoilija:
     """Luokka kuntoilijan tietoja varten"""
 
     # Olionmuodostin eli konstruktori, self -> tuleva olio
-    def __init__(self, nimi, pituus, paino, ika, sukupuoli):
+    def __init__(self, nimi, pituus, paino, ika, sukupuoli, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys):
         
         # Määritellään tulevan olion ominaisuudet (property), luokan kentät (field)
         self.nimi = nimi
@@ -23,6 +23,9 @@ class Kuntoilija:
         self.ika = ika
         self.sukupuoli = sukupuoli
         self.bmi = fitness.laske_bmi(self.pituus, self.paino)
+        self.vyotaron_ymparys = vyotaron_ymparys
+        self.kaulan_ymparys = kaulan_ymparys
+        self.lantion_ymparys = lantion_ymparys
 
     # Metodi rasvaprosentin laskemiseen (aikuinen)
     def rasvaprosentti(self):
@@ -30,8 +33,37 @@ class Kuntoilija:
             self.bmi, self.ika, self.sukupuoli)
         return self.rasvaprosentti
 
-#  JunioriKuntoilija-luokka Kuntoilija-luokan aliluokka (subclass) 
+    # Metodi rasvaprosentin laskemiseen USA:n armeijan metodeilla
+    def usa_rasvaprosentti_mies(pituus, vyotaron_ymparys, kaulan_ymparys):
+        """ summary
 
+        Args:
+            pituus(float): pituus (cm)
+            vyotaron_ymparys (float)): vyötarön ympärysmitta (cm)
+            kaulan_ymparys (float): kaulan ympärysmitta (cm)
+
+        Returns:
+            float: rasvaprosentti
+        """
+        usa_rasvaprosentti = 0
+        return usa_rasvaprosentti
+
+    def usa_rasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys):
+        """_summary_
+
+        Args:
+            pituus(float): pituus (cm)
+            vyotaron_ymparys (float)): vyötarön ympärysmitta (cm)
+            kaulan_ymparys (float): kaulan ympärysmitta (cm)
+            lantion_ymparys (float): lantion ympärysmitta (cm)
+
+        Returns:
+            float: rasvaprosentti
+        """
+        usa_rasvaprosentti = 0
+        return usa_rasvaprosentti
+
+#  JunioriKuntoilija-luokka Kuntoilija-luokan aliluokka (subclass) 
 
 class JunioriKuntoilija(Kuntoilija):
     """Luokka nuoren kuntoilijan tiedoille"""
