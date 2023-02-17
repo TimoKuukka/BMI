@@ -60,7 +60,7 @@ class Kuntoilija:
         Returns:
             float: rasvaprosentti
         """
-        fitness.usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
+        usa_rasvaprosentti = fitness.usarasvaprosentti_nainen(pituus, vyotaron_ymparys, kaulan_ymparys, lantion_ymparys)
         return usa_rasvaprosentti
 
 #  JunioriKuntoilija-luokka Kuntoilija-luokan aliluokka (subclass) 
