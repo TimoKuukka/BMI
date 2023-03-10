@@ -2,14 +2,17 @@
 #-------------------------------------------------------------------------------------
 
 # LIBRARIES AND MODULES
+# TODO: check is everything ok
 
 # CLASS DEFINITIONS
-
 
 class Question():
     """A class containing methods to ask questions on console and converting answers to various datatypes."""
     def __init__(self, question):
         self.question = question
+
+    @staticmethod
+    def ask_user_integer(question, loop):
 
     def ask_user_float(self, loop):
         """Asks a question and converts the answer to a floating point number
@@ -24,7 +27,7 @@ class Question():
         if loop == True:
 
             while True:
-                answer_txt = input(self.question)
+                answer_txt = input(question)
             # TODO: Add a routine to change , to .if user types the wrong symbo
 
             # Let's try to convert input to numeric
@@ -40,7 +43,7 @@ class Question():
            
         # Else ask once and return zero value and error information 
         else:
-             answer_txt = input(self.question)
+             answer_txt = input(question)
 
             # Let's try to convert input to numeric
         try:
@@ -55,47 +58,47 @@ class Question():
         return result
     
 
-    def ask_user_integer(self, loop):
-        """Asks a question and converts the answer to a integer
+    # def ask_user_integer(self, loop):
+    #     """Asks a question and converts the answer to a integer
 
-        Args:
-            loop (bool): If True asks the question until able to convert it
+    #     Args:
+    #         loop (bool): If True asks the question until able to convert it
         
-        Returns:
-            tuple: answer as integer, error message, error code, detailed error
-        """
-        # If loop argument is True use while loop until user inputs correct
-        if loop == True:
+    #     Returns:
+    #         tuple: answer as integer, error message, error code, detailed error
+    #     """
+    #     # If loop argument is True use while loop until user inputs correct
+    #     if loop == True:
 
-            while True:
-                answer_txt = input(self.question)
+    #         while True:
+    #             answer_txt = input(self.question)
 
-            # Let's try to convert input to numeric
-                try:
-                    answer = int(answer_txt)
-                    result = (answer, 'OK', 0, 'Conversion successful')
-                    break
+    #         # Let's try to convert input to numeric
+    #             try:
+    #                 answer = int(answer_txt)
+    #                 result = (answer, 'OK', 0, 'Conversion successful')
+    #                 break
 
-            # If an error occurs tell the user to check 
-                except Exception as e:
-                    print('Virhe syötetyssä arvossa, älä käytä yksiköitä', e)
-                    result = (0, 'Error', 1, str(e))
+    #         # If an error occurs tell the user to check 
+    #             except Exception as e:
+    #                 print('Virhe syötetyssä arvossa, älä käytä yksiköitä', e)
+    #                 result = (0, 'Error', 1, str(e))
            
-        # Else ask once and return zero value and error information 
-        else:
-             answer_txt = input(self.question)
+    #     # Else ask once and return zero value and error information 
+    #     else:
+    #          answer_txt = input(self.question)
 
-            # Let's try to convert input to numeric
-        try:
-                answer = int(answer_txt)
-                result = (answer, 'OK', 0, 'Conversion successful')
+    #         # Let's try to convert input to numeric
+    #     try:
+    #             answer = int(answer_txt)
+    #             result = (answer, 'OK', 0, 'Conversion successful')
 
-            # If an error occurs tell the user to check 
-        except Exception as e:
-                    print('Virhe syötetyssä arvossa, älä käytä yksiköitä', e)
-                    result = (0, 'Error', 1, str(e))
+    #         # If an error occurs tell the user to check 
+    #     except Exception as e:
+    #                 print('Virhe syötetyssä arvossa, älä käytä yksiköitä', e)
+    #                 result = (0, 'Error', 1, str(e))
                 
-        return result
+    #     return result
 
     def ask_user_boolean(self, true_value, false_value, loop):
         """Asks a question and converts the answer to a boolean value
@@ -158,4 +161,7 @@ if __name__ == "__main__":
 
     question3 = Question('Haluatko lähteä viikonlopun viettoon? ')
     answer_and_error = question3.ask_user_boolean('Y', 'N', False)
+    print(answer_and_error)
+
+    answer_and_error = Question.ask_user_integer('Mikä on elämän tarkoitus? ', False)
     print(answer_and_error)
