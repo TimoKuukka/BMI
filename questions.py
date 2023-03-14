@@ -78,6 +78,7 @@ class Question():
                 answer_txt = input(question)
                 
                 try:
+                    answer_txt = answer_txt.replace(',', '.')
                     answer = float(answer_txt)
                     result = (answer, 'OK', 0, 'Conversion successful')
                     break
@@ -93,6 +94,7 @@ class Question():
 
             # Let's try to convert input to numeric
             try:
+                answer_txt = answer_txt.replace(',', '.')
                 answer = float(answer_txt)
                 result = (answer, 'OK', 0, 'Conversion successful')
 
