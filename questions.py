@@ -13,7 +13,7 @@ class Question():
     def __init__(self, question):
         self.question = question
         
-    # A static method to ask a question and convert answer to an integer withou creating an object
+    # A static method to ask a question and convert answer to an integer without creating an object
     @staticmethod
     def ask_user_integer(question, loop):
         """Asks a question and converts the answer to an integer
@@ -58,11 +58,14 @@ class Question():
 
         return result
 
-    # TODO: Make all conversion functions to static ones
-    def ask_user_float(self, loop):
+  
+    # A static method to ask a question and convert answer to a float without creating an object  
+    @staticmethod
+    def ask_user_float(question, loop):
         """Asks a question and converts the answer to a floating point number
 
         Args:
+            question (str): Question to ask
             loop (bool): If True asks the question until able to convert it
 
         Returns:
@@ -73,9 +76,7 @@ class Question():
         if loop == True:
 
             while True:
-                answer_txt = input(self.question)
-                # TODO: Add a routine to change , to . if user types the wrong symbol
-                # Let's try to convert input to numeric
+                answer_txt = input(question, loop)
                 try:
                     answer = float(answer_txt)
                     result = (answer, 'OK', 0, 'Conversion successful')
@@ -88,7 +89,7 @@ class Question():
 
         # Else ask once and return zero value and error information
         else:
-            answer_txt = input(self.question)
+            answer_txt = input(question)
 
             # Let's try to convert input to numeric
             try:
@@ -145,7 +146,8 @@ class Question():
 
     #     return result
 
-    def ask_user_boolean(self, true_value, false_value, loop):
+    @staticmethod
+    def ask_user_boolean(question, true_value, false_value, loop):
         """Asks a question and converts the answer to a boolean value
 
         Args:
@@ -158,7 +160,7 @@ class Question():
         """
 
         # If loop argument is true use while loop until user inputs correct value
-        prompt = f'{self.question}, vastaa {true_value}/{false_value}: '
+        prompt = f'{question}, vastaa {true_value}/{false_value}: '
         if loop == True:
 
             while True:
@@ -197,9 +199,12 @@ class Question():
 
         return result
 
+    # TODO: Create a method to ask a question and convert aswer accordint to a dictionary
 
 if __name__ == "__main__":
 
-    answer_and_error = Question.ask_user_integer(
-        'Mikä on elämän tarkoitus? ', False)
+    answer_and_error = Question.ask_user_float('Kuinka paljon painat? ', True)
+    print(answer_and_error)
+
+    answer_and_error = Question.ask_user_integer('Kuinka vanha olet?', True)
     print(answer_and_error)
