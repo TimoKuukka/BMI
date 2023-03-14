@@ -103,11 +103,13 @@ class Question():
 
         return result
 
-    
-    def ask_user_boolean(self, true_value, false_value, loop):
+    # A static method to ask a question and convert the answer to a boolean without creating an object
+    @staticmethod
+    def ask_user_boolean(question, true_value, false_value, loop):
         """Asks a question and converts the answer to a boolean value
 
         Args:
+            question (str): Question to ask
             true_value (str): value to use as True
             false_value (str): value to use as False
             loop (bool): If True asks the question until able to convert it
@@ -117,7 +119,7 @@ class Question():
         """
 
         # If loop argument is true use while loop until user inputs correct value
-        prompt = f'{self.question}, vastaa {true_value}/{false_value}: '
+        prompt = f'{question}, vastaa {true_value}/{false_value}: '
         if loop == True:
 
             while True:
@@ -159,9 +161,15 @@ class Question():
     # TODO: Create a method to ask a question and convert answer according to a dictionary
 
 if __name__ == "__main__":
-
+    # Lets ask ask the weight and convert answer to a floating point number
     answer_and_error = Question.ask_user_float(
         'Kuinka paljon painat: ', True)
     print(answer_and_error)
+
+    # Lets ask the age and convert it to an integer
     answer_and_error = Question.ask_user_integer('Kuinka vanha olet: ', True)
+    print(answer_and_error)
+
+    # Lets ask question and convert the answer to a boolean value
+    answer_and_error = Question.ask_user_boolean('Oletko urheilullinen','Y', 'N', True)
     print(answer_and_error)
