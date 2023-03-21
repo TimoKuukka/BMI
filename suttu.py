@@ -32,7 +32,7 @@ def datediff(d1, d2):
     Returns:
         int: absolute difference in days
     """
-    d1 = datetime.datetime.strptime(d1, "%Y-%m-%d")
+    d1 = datetime.datetime.strptime(d1, "%Y-%m-%d") # ISO standardin mukainen merkintä, käytä tätä sovelluksissa
     d2 = datetime.datetime.strptime(d2, "%Y-%m-%d")
     difference =  abs((d2 - d1).days)
     return difference
