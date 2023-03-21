@@ -58,6 +58,7 @@ class Question():
 
         return result
 
+
     # A static method to ask a question and convert the answer to a float without creating an object
     @staticmethod
     def ask_user_float(question, loop):
@@ -87,6 +88,7 @@ class Question():
                 except Exception as e:
                     print('Virhe syötetyssä arvossa, älä käytä yksiköitä', e)
                     result = (0, 'Error', 1, str(e))
+
 
         # Else ask once and return zero value and error information
         else:
@@ -175,7 +177,7 @@ class Question():
         """
         if loop == True:
             while True:
-                answer_txt = input(question).lower
+                answer_txt = input(question).lower()
                 try:
                     value = dictionary[answer_txt]
                     result = (value, 'OK', 0, 'Conversion successful')
@@ -194,21 +196,25 @@ class Question():
         return result
 
 if __name__ == "__main__":
-    # Let's ask the weight and convert answer to a floating point number
-    answer_and_error = Question.ask_user_float(
-        'Kuinka paljon painat: ', True)
-    print(answer_and_error)
+    # # Let's ask the weight and convert answer to a floating point number
+    # answer_and_error = Question.ask_user_float(
+    #     'Kuinka paljon painat: ', True)
+    # print(answer_and_error)
 
-    # Let's ask the age and convert it to an integer
-    answer_and_error = Question.ask_user_integer('Kuinka vanha olet: ', True)
-    print(answer_and_error)
+    # # Let's ask the age and convert it to an integer
+    # answer_and_error = Question.ask_user_integer('Kuinka vanha olet: ', True)
+    # print(answer_and_error)
 
-    # Let's ask question and convert the answer to a boolean value
-    answer_and_error = Question.ask_user_boolean('Oletko urheilullinen','Y', 'N', True)
-    print(answer_and_error)
+    # # Let's ask question and convert the answer to a boolean value
+    # answer_and_error = Question.ask_user_boolean('Oletko urheilullinen','Y', 'N', True)
+    # print(answer_and_error)
 
 
-    gender_dictionary = {'tyttö': 0, 'poika': 1, 'mies': 1, 'nainen': 0}
+    # gender_dictionary = {'tyttö': 0, 'poika': 1, 'mies': 1, 'nainen': 0}
 
-    answer_and_error = Question.ask_user_dictionary('Sukupuoli: ', gender_dictionary, False)
+    # answer_and_error = Question.ask_user_dictionary('Sukupuoli: ', gender_dictionary, False)
+    # print(answer_and_error)
+
+    gender_dictionary = {'1': 1, '0':0}
+    answer_and_error = Question.ask_user_dictionary('Sukupuoli 1 mies, 0 nainen', gender_dictionary, False)
     print(answer_and_error)
