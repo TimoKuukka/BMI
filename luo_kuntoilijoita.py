@@ -19,8 +19,9 @@ weight = questions.Question.ask_user_float(
     'Kuinka paljon painat (kg): ', True)[0]
 height = questions.Question.ask_user_float('Kuinka pitkä olet (cm): ', True)[0]
 age = questions.Question.ask_user_integer('Kuinka vanha olet?: ', True)[0]
-gender = questions.Question.ask_user_integer(
-    'Sukupuoli 1 mies, 0 nainen: ', True)[0]
+allowed_genders = {'1': 1, '0': 0}
+gender = questions.Question.ask_user_dictionary(
+    'Sukupuoli 1 mies, 0 nainen: ', allowed_genders, True)[0]
 neck = questions.Question.ask_user_float(
     'Mikä on kaulanympäryksesi (cm): ', True)[0]
 waist = questions.Question.ask_user_float(
@@ -52,7 +53,14 @@ print(text_to_show)
 
 print('nimi', athlete.nimi, 'paino', athlete.paino)
 
+
 athlete_data = [] # Empty list for all athlete data
+
+# Read previous athlete_data from disk
+with open('athlete_data.json', 'r') as file:
+        athelete_data = json.load(file)
+        for item in athelete_data:
+             print('paino oli', item['paino'])
 
 # A dictionary for single weighing of an athlete
 athlete_data_row = {'nimi': athlete.nimi, 'pituus': athlete.pituus, 'paino': athlete.paino, 'ika': athlete.ika,
@@ -66,4 +74,4 @@ athlete_data.append(athlete_data_row)
 # Open a file for writing
 with open('athlete_data.json', 'w') as file:
     # Serialize the data into the file
-    json.dump(athlete_data, file)
+    json.dump(athlete_data, file, indent=4)
